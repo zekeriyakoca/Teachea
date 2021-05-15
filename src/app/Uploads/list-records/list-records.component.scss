@@ -1,0 +1,163 @@
+.primary{
+
+    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    display: inline-flex;
+    padding: 7px 12px;
+    border-radius: 16px;
+    align-items: center;
+    cursor: default;
+    min-height: 32px;
+    height: 1px;
+    margin: 4px;
+    background-color: #3f51b5;
+    color: #fff;
+  }
+  .accent{
+   
+    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    display: inline-flex;
+    padding: 7px 12px;
+    border-radius: 16px;
+    align-items: center;
+    cursor: default;
+    min-height: 32px;
+    height: 1px;
+    margin: 4px;
+    background-color: #ff4081;
+    color: #fff;
+  }
+  .tag-list{
+      margin : 10px 5px 10px;
+
+  }
+  .mat-chip{
+      font-size: .9em;
+      min-height: 26px;;
+  }
+
+.flexCenterColumn{
+    display: flex;
+    flex-direction: column !important;
+    align-items: center;
+    margin: auto !important;
+}
+.card-description{
+    
+    margin: 40px 10px 30px;
+}
+mat-card{
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12) !important;
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+}
+.mat-card-image {
+    border-radius: .25rem;
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+
+    // width: calc(100% + 64px);
+    // margin: 0 -32px 32px -32px;
+}
+mat-card-actions{
+    // width: calc(100% + 64px);
+    // margin-left: -32px;
+    margin-bottom: 0 !important;
+    padding: .75rem 2.4rem;
+    background-color: rgba(0,0,0,.03);
+    border-top: 1px solid rgba(0,0,0,.125);
+    margin-top: 1.5rem!important;
+    border-bottom: none;;
+    border-radius: 0 0 calc(.25rem - 1px) calc(.25rem - 1px);
+    // margin-right: -2rem;
+    // margin-left: -2rem;
+    text-align: right;
+    //border: solid black 1px;
+    // transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    // box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+}
+.container {
+    width: 100%;
+    max-width: 800px;
+}
+.search-box-container{
+    max-width: 400px;
+    text-align: center;
+}
+.filter-content{
+    min-height: 100px;
+}
+.records-container{
+    margin-top: 50px;
+}
+mat-form-field{
+    max-width: 400px;
+}
+.mat-card-actions{
+    height: 50px;
+}
+.full-size-image-wrapper{
+    visibility: hidden;
+    display: none;
+    background-color:#ffffff;
+    -webkit-transition: background-color 1.2s; /* For Safari 3.1 to 6.0 */
+    transition: background-color 1.2s ;
+
+    img{
+        width: 100vw !important;
+    }
+}
+.full-screen{
+
+    background-color: #0c0040e8;
+    height: 100%;
+    display: flex;
+    visibility: visible;
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    z-index: 1000;
+    top: 0px;
+    bottom: 0px;
+}
+.search-box-container{
+    margin-top: 20px;
+}
+.record-card {
+    width: 80%;
+    max-width: 400px;
+    margin: 32px;
+
+
+  }
+  .mat-tab-body-wrapper{
+    min-height: 120px;
+  }
+  .mat-tab-body-wrapper{
+    padding-top: 20px !important;
+  }
+  
+
+  .card-header{
+    color:#1c2331!important;
+      span{
+          font-size:1.2em;
+          line-height: 2em;
+          padding-left: 10px;
+          
+      }
+  }
+  .card-date{
+    span{
+        font-size:1.1em;
+        color:#afafaf !important;
+    }
+}
+  
+  .record-card-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+  .border-bottom{
+      border-bottom: solid #dcdcdc 1px;
+  }
+
+

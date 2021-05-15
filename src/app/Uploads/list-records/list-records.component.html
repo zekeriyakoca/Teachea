@@ -1,0 +1,112 @@
+<div class="flexCenterColumn container">
+  <div class="search-box-container full-width">
+    <mat-form-field class="search-box full-width">
+      <span matPrefix></span>
+      <input type="text" matInput placeholder="Ara..." (input)="search($event)">
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+  </div>
+  <div class="full-width">
+    <mat-tab-group mat-align-tabs="center">
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="example-tab-icon">label</mat-icon>
+          Etiket
+        </ng-template>
+        <div class="filter-content" fxLayout="row" fxLayoutAlign="space-around center">
+          <mat-form-field class="full-width">
+            <mat-chip-list #tagList aria-label="Tags">
+              <mat-chip *ngFor="let tag of selectedTags;let i = index" [selectable]="selectable"
+                [class.primary]="i%3==1" [class.accent]="i%3==2" [removable]="removable" (removed)="removeTag(tag)">
+                {{tag}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input #tagInput placeholder="Etiket..." [matChipInputFor]="tagList" [formControl]="tagCtrl"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                [matAutocomplete]="auto" (matChipInputTokenEnd)="addTag($event)">
+            </mat-chip-list>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+              <mat-option *ngFor="let tag of filteredTags |async " [value]="tag">
+                {{tag}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+
+      </mat-tab>
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="example-tab-icon" [class.selectedTab]="selectedClass!=''">school</mat-icon>
+          Ders
+        </ng-template>
+        <div class="filter-content" fxLayout="row" fxLayoutAlign="space-around center">
+          <mat-form-field class="full-width">
+            <mat-label>Ders</mat-label>
+            <mat-select [(value)]="selectedClass" (selectionChange)="filterByClass(selectedClass)">
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let class of classes" [value]="class">{{class}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </mat-tab>
+
+      <!-- <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="example-tab-icon">thumb_up</mat-icon>
+          Tarih
+        </ng-template>
+
+        <div class="filter-content" fxLayout="row" fxLayoutAlign="space-around center">
+
+        </div>
+      </mat-tab> -->
+    </mat-tab-group>
+    <div class="records-container" fxLayout="column" fxLayoutAlign="space-around center">
+      <mat-card class="record-card" *ngFor="let record of recordsFiltered|async">
+        <!-- <mat-card-header>
+          <div mat-card-avatar class="record-card-header-image"></div>
+          <mat-card-title>Shiba Inu</mat-card-title>
+          <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+        </mat-card-header> -->
+        <img mat-card-image src="{{record.thumbUrl}}" alt="record.subject"
+          (click)="openFullScreen(record.downloadUrl)">
+
+        <mat-card-content>
+          <div class="border-bottom" div fxLayout="row" fxLayoutAlign="space-between start">
+            <div class="card-header">
+              <mat-icon class="card-header-icon">bookmarks</mat-icon><span>{{record.subject}}</span>
+            </div>
+            <div class="card-date">
+              <span>{{record.dateCreated}}</span>
+            </div>
+          </div>
+          <div class="full-width tag-list">
+            <mat-chip-list aria-label="Tag">
+              <mat-chip *ngFor="let tag of record.tags;let i = index" [class.primary]="i%3==1" [class.accent]="i%3==2">
+                {{tag}}
+              </mat-chip>
+            </mat-chip-list>
+          </div>
+          <div class="card-description">
+            <p>
+              {{record.desc}}
+            </p>
+          </div>
+
+        </mat-card-content>
+
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="goToDetailPage(record.id)">Detaylar</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+
+  </div>
+</div>
+<div class="full-size-image-wrapper" [class.full-screen]="imageFullScreen" (click)="imageFullScreen = false;">
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <img src="{{selectedImage}}" alt="Full Size Image View">
+  </div>
+</div>

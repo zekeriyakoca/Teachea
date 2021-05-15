@@ -1,0 +1,54 @@
+<div class="inner-container bg-white section-gap-lg">
+  <div class="container">
+    <div fxLayout='row wrap' fxLayoutAlign="center center">
+      <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="80" fxFlex.lg="70" fxFlex.xl="70">
+        <div fxLayout='row wrap' fxLayoutAlign="center center">
+          <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="50" fxFlex.xl="50">
+            <div class="form-img register-image">
+            </div>
+          </div>
+          <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="50" fxFlex.xl="50">
+              <div class="test-button-wrapper">
+                  <button mat-raised-button color="primary" (click)="authService.testLogin()">Kayıt Olmadan Test Et</button>
+              </div>
+            <mat-card class="register-form form-margin">
+              <h4>{{"Bilgileriniz"}}</h4>
+              <form class="center">
+                <div class="mb-4" fxLayout="row wrap">
+                  <mat-form-field class="w-100" fxFlex="50">
+                    <input matInput type="text" placeholder="{{'Adınız'}}" #firstname required>
+                  </mat-form-field>
+                  <mat-form-field class="w-100" fxFlex="50">
+                    <input matInput type="text" placeholder="{{'Soyadınız'}}" #lastname required>
+                  </mat-form-field>
+                  <mat-form-field class="w-100" fxFlex="100">
+                    <input matInput type="email" placeholder="{{'Email'}}" #email required>
+                  </mat-form-field>
+                  <mat-form-field class="w-100" fxFlex="100">
+                    <input matInput type="password" placeholder="{{'Şifreniz'}}" #password required>
+                  </mat-form-field>
+                </div>
+                <div class="mb-4">
+                  <mat-form-field class="w-100" fxFlex="100">
+                    <input matInput type="password" placeholder="{{'Şifreniz(Tekrar)'}}" required>
+                  </mat-form-field>
+                </div>
+                <div class="mb-4 mlr">
+                  <button type="button" class="button-lg mb-3 accent" mat-raised-button (click)="authService.SignUp(firstname.value,lastname.value,email.value,password.value);">{{"Kayıt Ol"}}</button>
+                </div>
+                <div class="divider"><span>- VEYA -</span></div>
+                <div class="mb-4 mlr">
+                    <button type="button"  class="button-lg mb-3 accent" mat-raised-button (click)="authService.GoogleAuth()">
+                      <img style="height: 20px; margin-right: 10px;" src="https://img.icons8.com/plasticine/100/000000/google-logo.png">{{"Google"}}
+                    </button>
+                </div>
+
+              <div class="divider">  {{"Zaten bir hesabınız var mı?"}} <a class="accent-color" [routerLink]="['/session/signin']">{{"Giriş Yap"}}</a></div>
+              </form>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,85 @@
+<div *ngIf="downloadUrl |async as url" class="image-container" fxLayout="row" fxLayoutAlign="center center">
+    <div class="image-wrapper">
+        <h6>Önizleme</h6>
+        <img [src]="url">
+    </div>
+</div>
+<div class="dropzone" appDropZone (hovered)="toggleHover($event)" (dropped)="startUpload($event)"
+    [class.hovering]="isHovering">
+
+    <h3>Dosyanı Buraya Sürükleyip Bırakabilirsin</h3>
+
+    <mat-form-field appearance="outline" class="file-input" (click)="openFileChoose()">
+        <mat-label>Dosya Adı</mat-label>
+        <input #selectFile matInput placeholder="Dosya Adı" [(ngModel)]="record.downloadUrl">
+        <mat-icon *ngIf="!record.fileName" matSuffix>cloud_upload</mat-icon>
+        <mat-icon *ngIf="record.fileName" matSuffix>cloud_done</mat-icon>
+        <mat-hint>Yüklenecek dosyanızı seçin</mat-hint>
+    </mat-form-field>
+    <div class="file">
+        <label class="file-label">
+            <input #fileInput class="file-input" type="file" (change)="startUpload($event)">
+        </label>
+    </div>
+
+    <div *ngIf="snapshot | async as snap">
+        <div *ngIf="isActive(snap)">
+                <mat-progress-bar class="upload-progress" mode="determinate"
+                [value]="persentage"></mat-progress-bar>
+            {{ snap.bytesTransferred |  fileSize:true }} of {{ snap.totalBytes |  fileSize:true }}
+        </div>
+    </div>
+
+</div>
+
+<div class="flex-container " fxLayout="row" fxLayoutAlign="center center">
+    <div class="full-width form" fxLayout="column" fxLayoutAlign="start start">
+        <mat-form-field class="full-width">
+            <mat-chip-list #tagList aria-label="Tags">
+                <mat-chip *ngFor="let tag of record.tags;let i = index" [selectable]="selectable"
+                    [class.primary]="i%3==1" [class.accent]="i%3==2" [removable]="removable" (removed)="removeTag(tag)">
+                    {{tag}}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+                <input #tagInput placeholder="Etiket..." [matChipInputFor]="tagList" [formControl]="tagCtrl"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                    [matAutocomplete]="auto" (matChipInputTokenEnd)="addTag($event)">
+            </mat-chip-list>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                <mat-option *ngFor="let tag of filteredTags |async " [value]="tag">
+                    {{tag}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Ders</mat-label>
+            <mat-select [(value)]="record.class">
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let class of classes" [value]="class">{{class}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Konu" [(ngModel)]="record.subject">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Zorluk Derecesi</mat-label>
+            <mat-select [(value)]="record.level">
+                <mat-option>--</mat-option>
+                <mat-option value=1>Seviye 1</mat-option>
+                <mat-option value=2>Seviye 2</mat-option>
+                <mat-option value=3>Seviye 3</mat-option>
+                <mat-option value=4>Seviye 4</mat-option>
+                <mat-option value=5>Seviye 5</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <textarea matInput placeholder="Açıklama" [(ngModel)]="record.desc"></textarea>
+        </mat-form-field>
+        <div class="button-group-wrapper" fxLayout="row" fxLayoutAlign="center center">
+            <button mat-raised-button color="primary" (click)="saveRecord()">
+                <mat-icon aria-hidden="false" aria-label="">done_all</mat-icon> Kaydet
+            </button>
+        </div>
+    </div>
+
+</div>

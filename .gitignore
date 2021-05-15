@@ -1,0 +1,5 @@
+node_modules
+
+src/environments/environment.prod.ts
+
+bfg-1.14.0.jar

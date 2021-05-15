@@ -1,0 +1,24 @@
+
+                  <form (ngSubmit) = "signIn()" >
+                    <div class="mb-4">
+                      <mat-form-field class="w-100 full-width">
+                        <input matInput type="email" name="email" placeholder="{{'Email'}}" [(ngModel)] = "email" required>
+                      </mat-form-field>
+                    </div>
+                    <div class="mb-4">
+                      <mat-form-field  class="w-100 full-width">
+                        <input matInput  type="password" name="password" placeholder="{{'Şifre'}}"  [(ngModel)] = "password"  required>
+                      </mat-form-field>
+                    </div>
+                    <div class="mb-3">
+                      <mat-checkbox [checked]="rememberMe">{{'Beni Hatırla'}}</mat-checkbox>
+                      <span fxFlex></span> <a [routerLink]="['/session/forgot-password']">{{"Şifremi Unuttum?"}}</a>
+                    </div>
+                    <button type="submit" class="button-lg mb-3 accent" mat-raised-button >{{'GİRİŞ YAP'}}</button>
+                    <!-- <button color="accent" class="button-lg mb-3" mat-raised-button [routerLink]="['/checkout/payment']">Sign In</button> -->
+                    <p>{{"Hesabınız yok mu?"}} <a [routerLink]="['/session/signup']">{{"Yeni bir hesap için tıklayın"}}</a></p>
+                  </form>
+
+
+
+
